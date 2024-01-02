@@ -14,8 +14,8 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    "baseUrl": ".",
     "types": ["vite/client","node"],
+    "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     },

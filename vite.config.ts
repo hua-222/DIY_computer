@@ -31,6 +31,12 @@ export default defineConfig(({ command }) => {
           additionalData: '@import "./src/styles/variable.scss";',
         }
       }
+    },
+    server: {
+      open: true,  //自动启动浏览器
+      host: '0.0.0.0', // localhost
+      port: 8001,  //端口号
+      //https: false
     }
   }
 })

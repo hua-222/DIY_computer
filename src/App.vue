@@ -1,9 +1,7 @@
 <template>
   <div>
-    <h1>111122333444555</h1>
-    <el-button type="primary" :icon="Edit" circle />
+    <Test />
   </div>
-  <Test />
 </template>
 
 <script setup lang="ts">

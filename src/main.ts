@@ -15,6 +15,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 //引入自定义插件对象: 注册整个项目全局组件
 import globalComponent from '@/components';
+
 //引入模板的全局的样式
 import "@/styles/index.scss";
 

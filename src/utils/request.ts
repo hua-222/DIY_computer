@@ -14,7 +14,6 @@ let http = axios.create({
 http.interceptors.request.use(
   (config: any) => {
     //添加请求头信息 headers
-    console.log('config',config)
     return config;
   },
   (error) => {

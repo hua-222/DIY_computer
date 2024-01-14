@@ -7,6 +7,11 @@ import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 //svg插件需求配置代码
 import "virtual:svg-icons-register";
+//引入路由
+import router from './router'
+
+// 引入pinia
+import pinia from './store'
 
 const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -14,16 +19,18 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 //引入自定义插件对象: 注册整个项目全局组件
-import globalComponent from '@/components';
+import GlobalComponent from '@/components';
 
 //引入模板的全局的样式
 import "@/styles/index.scss";
 
 app
-.use(globalComponent) //安装自定义组件
+.use(GlobalComponent) //安装自定义组件
+.use(router) //注册路由
+.use(pinia)
 .use(ElementPlus, { 
   size: "default", 
-  locale: zhCn,  // ElementPlus 国际化配置
+  locale: zhCn,  // ElementPlus 国s际化配置
 })
 //将应用挂载到挂载点上
 .mount("#app");

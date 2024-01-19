@@ -19,13 +19,13 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 //引入自定义插件对象: 注册整个项目全局组件
-import GlobalComponent from '@/components';
+import globalComponent from '@/components';
 
 //引入模板的全局的样式
 import "@/styles/index.scss";
 
 app
-.use(GlobalComponent) //安装自定义组件
+.use(globalComponent) //安装自定义组件
 .use(router) //注册路由
 .use(pinia)
 .use(ElementPlus, { 

@@ -4,6 +4,7 @@ function createUserList() {
       userId: 1,
       avatar: "",
       username: "admin",
+      name: 'admin',
       password: "123456",
       desc: "平台管理员",
       roles: ["平台管理员"],
@@ -15,13 +16,26 @@ function createUserList() {
       userId: 2,
       avatar: "",
       username: "system",
+      name: 'system',
       password: "123456",
       desc: "系统管理员",
       roles: ["系统管理员"],
       buttons: ['cuser.detail','cuser.user'],
       routes: ["system"],
       token: "System Token"
-    }
+    },
+    {
+      userId: 3,
+      avatar: "",
+      username: "liangch",
+      name: '梁朝华',
+      password: "123456",
+      desc: "平台管理员",
+      roles: ["平台管理员"],
+      buttons: ['cuser.detail'],
+      routes: ["home"],
+      token: "Admin Token2"
+    },
   ];
 }
 

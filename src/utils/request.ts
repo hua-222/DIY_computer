@@ -32,7 +32,8 @@ http.interceptors.response.use(
     //错位提示
     ElMessage.error(response.data.data.message);
 
-    return Promise.reject(new Error(response.data.data.message || "Error"));
+    return response.data
+    //return Promise.reject(new Error(response.data.data.message || "Error"));
   },
   (error) => {
     //http状态码

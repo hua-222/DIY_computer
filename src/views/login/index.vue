@@ -13,7 +13,7 @@
                 <el-input v-model="loginForm.password" :prefix-icon="Lock" show-password type="password" placeholder="请输入密码"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button class="login_btn" type="primary" size="default" @click="login">登录</el-button>
+                <el-button :loading="loginLoading" class="login_btn" type="primary" size="default" @click="login">登录</el-button>
             </el-form-item>
         </el-form>
       </el-col>
@@ -23,14 +23,43 @@
 
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue';
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
+import userStore from '@/store/modules/user'
+import { useRouter } from 'vue-router'
+import { ElNotification } from 'element-plus'
+
+import { getTime } from '@/utils/time'
+
+let router = useRouter()
+let useStore = userStore()
 let loginForm = reactive({
     username: '',
     password: '',
 });
 
+let loginLoading = ref(false)
 const login = () => {
-    console.log('loginForm', loginForm)
+    loginLoading.value = true
+    useStore.userLogin(loginForm).then((res) => {
+      if(res.code === 200) {
+        //跳到首页
+        router.push('/')
+        ElNotification({
+          type: 'success',
+          title: `Hi,${getTime()}`,
+          message: '登录成功！'
+        })
+        loginLoading.value = false
+      }
+    })
+    .catch((err) => {
+      // ElNotification({
+      //     type: 'error',
+      //     title: err.message,
+      //     message: '登录失败！'
+      // })
+      loginLoading.value = false
+    })
 };
 </script>
 

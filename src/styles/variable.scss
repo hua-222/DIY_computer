@@ -1,2 +1,21 @@
 //给项目提供scss全局变量
-$color: rgb(230, 17, 17);
+//$color: rgb(230, 17, 17);
+
+//左侧路由区的宽度
+$layout-aside-width: 260px;
+//左侧路由区的背景颜色
+$layout-aside-background: #001529;
+
+//右侧路由header导航区的高度
+$layout-header-height: 64px;
+//右侧路由header导航区的背景颜色
+$layout-header-background: #c6e2ff;
+
+//右侧路由header导航区的背景颜色
+$layout-main-background: #d9ecff;
+
+//左侧logo高度
+$layout-menu-logo-height: 50px;
+
+//左侧菜单标题文字大小
+$layout-menu-title-fontSize: 24px;

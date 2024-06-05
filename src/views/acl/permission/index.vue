@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div>
         <span>菜单管理</span>
     </div>
 </template>
@@ -9,9 +9,4 @@
 </script>
 
 <style scoped>
-.box {
-    width: 100%;
-    height: 400px;
-    background-color: red
-}
 </style>

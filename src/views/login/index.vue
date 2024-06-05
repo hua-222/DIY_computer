@@ -24,14 +24,14 @@
 <script setup lang="ts">
 import { User, Lock } from "@element-plus/icons-vue";
 import { reactive, ref } from "vue";
-import userStore from "@/store/modules/user";
+import useUserStore from "@/store/modules/user";
 import { useRouter } from "vue-router";
 import { ElNotification } from "element-plus";
 
 import { getTime } from "@/utils/time";
 
 let router = useRouter();
-let useStore = userStore();
+let useStore = useUserStore();
 
 let loginFormRef = ref();
 let loginForm = reactive({
@@ -61,6 +61,7 @@ const login = async () => {
   let validateStatus = await loginFormRef.value.validate()
   if(!validateStatus) return  // 验证不通过直接返回
   loginLoading.value = true;
+  console.log('useStore',useStore)
   useStore
     .userLogin(loginForm)
     .then((res) => {

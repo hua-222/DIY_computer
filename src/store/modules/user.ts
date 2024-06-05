@@ -8,11 +8,14 @@ import type { loginForm, loginResponseData } from '@/api/user/type'
 import type { userState } from './types/type'
 //引入本地存储方法
 import { SET_TOKEN, GET_TOKEN } from '@/utils/token'
+//引入常量路由
+import { constantRouter } from '@/router/routes'
 
-let userStore = defineStore('User', {
+let useUserStore = defineStore('User', {
     //存储数据
     state: (): userState => ({
-        token: GET_TOKEN()
+        token: GET_TOKEN(), //用户唯一标识token
+        menuRoutes: constantRouter, //仓库存储生成菜单路由（数组）
     }),
     //异步 逻辑的地方
     actions: {
@@ -33,4 +36,4 @@ let userStore = defineStore('User', {
 
     }
 })
-export default userStore
+export default useUserStore

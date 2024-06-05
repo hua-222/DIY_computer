@@ -8,32 +8,9 @@
         <!-- 滚动组件 -->
         <el-scrollbar class="scrollbar" :native="false">
           <!-- 菜单组件 -->
-          <el-menu background-color="#001529" text-color="white">
-            <el-sub-menu index="1">
-              <template #title>
-                <span>Navigator One</span>
-              </template>
-              <el-menu-item-group title="Group One">
-                <el-menu-item index="1-1">item one</el-menu-item>
-                <el-menu-item index="1-2">item two</el-menu-item>
-              </el-menu-item-group>
-              <el-menu-item-group title="Group Two">
-                <el-menu-item index="1-3">item three</el-menu-item>
-              </el-menu-item-group>
-              <el-sub-menu index="1-4">
-                <template #title>item four</template>
-                <el-menu-item index="1-4-1">item one</el-menu-item>
-              </el-sub-menu>
-            </el-sub-menu>
-            <el-menu-item index="2">
-              <span>Navigator Two</span>
-            </el-menu-item>
-            <el-menu-item index="3" disabled>
-              <span>Navigator Three</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-              <span>Navigator Four</span>
-            </el-menu-item>
+          <el-menu background-color="#001529" :router="true" text-color="white">
+            <!-- 根据路由展示菜单 -->
+            <Menu :menuList="userStore.menuRoutes" />
           </el-menu>
         </el-scrollbar>
       </el-aside>
@@ -41,7 +18,9 @@
         <!-- 右侧路由header导航 -->
         <el-header class="common-layout-header">Header</el-header>
         <!-- 右侧内容区 -->
-        <el-main class="common-layout-main">Main</el-main>
+        <el-main class="common-layout-main">
+          <Layout />
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -49,6 +28,13 @@
 
 <script setup lang="ts">
 import Logo from "./logo/index.vue";
+import Menu from "./menu/index.vue";
+import Layout from "./layout.vue";
+
+
+//获取用户相关仓库
+import useUserStore from '@/store/modules/user'
+let userStore = useUserStore()
 </script>
 
 <style scoped lang="scss">
@@ -56,22 +42,37 @@ import Logo from "./logo/index.vue";
   width: 100%;
   height: 100vh;
   background: red;
+
   .common-layout-aside {
     width: $layout-aside-width;
     height: 100vh;
     background: $layout-aside-background;
+
     .scrollbar {
       width: 100%;
       height: calc(100vh - $layout-menu-logo-height);
+      padding-top: 5px;
+
+      .el-menu {
+        border-right: none;
+      }
     }
   }
+
   .common-layout-header {
     height: $layout-header-height;
     background: $layout-header-background;
   }
+
   .common-layout-main {
     height: calc(100% - $layout-header-height);
     background: $layout-main-background;
+    .text-box {
+      width: 600px;
+      height: 300px;
+      border: 1px solid red;
+      padding: 15px;
+    }
   }
 }
 </style>

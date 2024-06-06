@@ -8,7 +8,7 @@
         <!-- 滚动组件 -->
         <el-scrollbar class="scrollbar" :native="false">
           <!-- 菜单组件 -->
-          <el-menu background-color="#001529" :router="true" text-color="white">
+          <el-menu :default-active="$route.path" background-color="#001529" :router="true" text-color="white">
             <!-- 根据路由展示菜单 -->
             <Menu :menuList="userStore.menuRoutes" />
           </el-menu>
@@ -16,7 +16,9 @@
       </el-aside>
       <el-container>
         <!-- 右侧路由header导航 -->
-        <el-header class="common-layout-header">Header</el-header>
+        <el-header class="common-layout-header">
+          <Tabbar />
+        </el-header>
         <!-- 右侧内容区 -->
         <el-main class="common-layout-main">
           <Layout />
@@ -27,10 +29,17 @@
 </template>
 
 <script setup lang="ts">
+// 引入左侧菜单logo子组件
 import Logo from "./logo/index.vue";
+// 引入菜单组件
 import Menu from "./menu/index.vue";
+// 右侧内容展示区域
 import Layout from "./layout.vue";
-
+// 引入头部tabbar组件
+import Tabbar from './tabbar/index.vue'
+// 引入路由对象
+import { useRoute } from 'vue-router'
+const $route = useRoute()
 
 //获取用户相关仓库
 import useUserStore from '@/store/modules/user'
@@ -41,7 +50,6 @@ let userStore = useUserStore()
 .common-layout {
   width: 100%;
   height: 100vh;
-  background: red;
 
   .common-layout-aside {
     width: $layout-aside-width;
@@ -61,18 +69,14 @@ let userStore = useUserStore()
 
   .common-layout-header {
     height: $layout-header-height;
-    background: $layout-header-background;
+  }
+  ::v-deep(.el-header) {
+    padding: 0;
   }
 
   .common-layout-main {
     height: calc(100% - $layout-header-height);
     background: $layout-main-background;
-    .text-box {
-      width: 600px;
-      height: 300px;
-      border: 1px solid red;
-      padding: 15px;
-    }
   }
 }
 </style>

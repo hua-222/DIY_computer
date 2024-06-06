@@ -55,7 +55,7 @@ export const constantRouter = [
     },
     children: [
       {
-        path: '/user',
+        path: '/acl/user',
         component: () => import("@/views/acl/user/index.vue"),
         name: 'User',
         meta: {
@@ -65,7 +65,7 @@ export const constantRouter = [
         },
       },
       {
-        path: '/role',
+        path: '/acl/role',
         component: () => import("@/views/acl/role/index.vue"),
         name: 'Role',
         meta: {
@@ -75,7 +75,7 @@ export const constantRouter = [
         },
       },
       {
-        path: '/permission',
+        path: '/acl/permission',
         component: () => import("@/views/acl/permission/index.vue"),
         name: 'Permission',
         meta: {
@@ -97,9 +97,9 @@ export const constantRouter = [
     },
     children: [
       {
-        path: '/index',
+        path: '/test',
         component: () => import("@/views/test/index.vue"),
-        name: 'Index',
+        name: 'Test',
         meta: {
           title: '测试',
           icon: 'Refresh',

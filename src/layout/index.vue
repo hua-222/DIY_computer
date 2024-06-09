@@ -2,13 +2,13 @@
   <div class="common-layout">
     <el-container>
       <!-- 左侧路由菜单 -->
-      <el-aside class="common-layout-aside">
+      <el-aside :class="{ 'common-layout-aside': true, fold: layoutSettingStore.fold }">
         <Logo />
         <!-- 展示菜单 -->
         <!-- 滚动组件 -->
         <el-scrollbar class="scrollbar" :native="false">
           <!-- 菜单组件 -->
-          <el-menu :default-active="$route.path" background-color="#001529" :router="true" text-color="white">
+          <el-menu :collapse="layoutSettingStore.fold" :default-active="$route.path" background-color="#001529" :router="true" text-color="white">
             <!-- 根据路由展示菜单 -->
             <Menu :menuList="userStore.menuRoutes" />
           </el-menu>
@@ -29,12 +29,15 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({
+  name: 'Layout'
+})
 // 引入左侧菜单logo子组件
 import Logo from "./logo/index.vue";
 // 引入菜单组件
 import Menu from "./menu/index.vue";
 // 右侧内容展示区域
-import Layout from "./layout.vue";
+import Layout from "./main/index.vue";
 // 引入头部tabbar组件
 import Tabbar from './tabbar/index.vue'
 // 引入路由对象
@@ -44,6 +47,10 @@ const $route = useRoute()
 //获取用户相关仓库
 import useUserStore from '@/store/modules/user'
 let userStore = useUserStore()
+
+import useLayoutSettingStore from '@/store/modules/setting'
+// 获取layout配置相关的仓库
+let layoutSettingStore = useLayoutSettingStore()
 </script>
 
 <style scoped lang="scss">
@@ -55,6 +62,7 @@ let userStore = useUserStore()
     width: $layout-aside-width;
     height: 100vh;
     background: $layout-aside-background;
+    transition: all 0.3s;
 
     .scrollbar {
       width: 100%;
@@ -65,6 +73,11 @@ let userStore = useUserStore()
         border-right: none;
       }
     }
+  }
+  .fold {
+    width: $layout-aside-min-width;
+    padding-right: 4px;
+    overflow: hidden;
   }
 
   .common-layout-header {

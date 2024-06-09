@@ -8,6 +8,10 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({
+    name: 'Logo'
+})
+
 import setting from '@/setting'
 
 </script>
@@ -19,11 +23,11 @@ import setting from '@/setting'
     color: white;
     display: flex;
     align-items: center;
-    padding: 0 5px;
+    padding: 0 5px 0 3px;
     padding-top: 5px;
     img {
-        width: 70px;
-        height: 48px;
+        width: 50px;
+        height: 28px;
     }
     p {
         margin-left: 5px;

@@ -8,8 +8,11 @@
         </div>
     </div>
 </template>
-
 <script setup lang="ts">
+defineOptions({
+    name: 'Tabbar'
+})
+
 import Breadcrumb from './breadcrumb/index.vue'
 import Setting from './setting/index.vue'
 
@@ -21,7 +24,7 @@ import Setting from './setting/index.vue'
     height: 100%;
     display: flex;
     justify-content: space-between;
-    background-image: linear-gradient(to right, rgb(240, 246, 249), rgb(222, 236, 244), rgb(240, 244, 250));
+    background-image: linear-gradient(to right, white, rgb(222, 236, 244), white);
 
     .tabbar-left {
         margin-left: 15px;

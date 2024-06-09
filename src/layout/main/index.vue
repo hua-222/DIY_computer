@@ -8,7 +8,11 @@
     </router-view>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+defineOptions({
+    name: 'Main'
+})
+</script>
 <style scoped>
 .fade-enter-from {
     opacity: 0;

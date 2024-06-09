@@ -6,9 +6,16 @@
         </el-icon>
     </el-tooltip>
     <!-- 左侧导航面包屑 -->
-    <el-breadcrumb separator-icon="ArrowRigh">
-        <el-breadcrumb-item>权限管理</el-breadcrumb-item>
-        <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+    <el-breadcrumb separator-icon="ArrowRight">
+        <el-breadcrumb-item v-for="(item,index) in $route.matched" :key="index">
+            <template v-if="item.meta.title">
+                <el-icon style="margin: 0px 2px;vertical-align: top;">
+                    <component :is="item.meta.icon"></component>
+                </el-icon>
+                <!-- 面包屑展示匹配路由标题 -->
+                <span>{{ item.meta.title }}</span>
+            </template>
+        </el-breadcrumb-item>
     </el-breadcrumb>
 </template>
 
@@ -16,6 +23,9 @@
 defineOptions({
     name: 'Breadcrumb',
 })
+// 引入路由对象
+import { useRoute } from 'vue-router'
+const $route = useRoute()
 import useLayoutSettingStore from '@/store/modules/setting'
 // 获取layout配置相关的仓库
 let layoutSettingStore = useLayoutSettingStore()

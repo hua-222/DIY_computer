@@ -17,8 +17,8 @@ export const constantRouter = [
     name: 'Layout',
     redirect: "/home",
     meta: {
-      title: 'Layout',
-      icon: "icon-desktop",
+      title: '',
+      icon: "",
       hidden: false,
     },
     children: [
@@ -91,8 +91,8 @@ export const constantRouter = [
     component: () => import("@/layout/index.vue"),
     name: 'Test',
     meta: {
-      title: '测试',
-      icon: 'Refresh',
+      title: '',
+      icon: '',
       hidden: false,
     },
     children: [

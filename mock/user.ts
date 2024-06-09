@@ -2,7 +2,7 @@ function createUserList() {
   return [
     {
       userId: 1,
-      avatar: "",
+      headerImgUrl: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
       username: "admin",
       name: 'admin',
       password: "123456",
@@ -14,7 +14,7 @@ function createUserList() {
     },
     {
       userId: 2,
-      avatar: "",
+      headerImgUrl: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
       username: "system",
       name: 'system',
       password: "123456",
@@ -26,7 +26,7 @@ function createUserList() {
     },
     {
       userId: 3,
-      avatar: "",
+      headerImgUrl: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
       username: "liangch",
       name: '梁朝华',
       password: "123456",
@@ -60,9 +60,9 @@ export default [
   // 获取用户信息
   {
     url: '/api/user/userInfo',
-    methods: 'post',
-    response: (({ body }) => {
-      const { token } = body
+    methods: 'get',
+    response: ((request: any) => {
+      const token = request.headers.token
       const checkUser = createUserList().find((item) => {
         return item.token === token
       })

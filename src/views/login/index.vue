@@ -61,7 +61,6 @@ const login = async () => {
   let validateStatus = await loginFormRef.value.validate()
   if(!validateStatus) return  // 验证不通过直接返回
   loginLoading.value = true;
-  console.log('useStore',useStore)
   useStore
     .userLogin(loginForm)
     .then((res) => {
@@ -77,11 +76,11 @@ const login = async () => {
       }
     })
     .catch((err) => {
-      // ElNotification({
-      //     type: 'error',
-      //     title: err.message,
-      //     message: '登录失败！'
-      // })
+      ElNotification({
+          type: 'error',
+          title: err.message,
+          message: '登录失败！'
+      })
       loginLoading.value = false;
     });
 };

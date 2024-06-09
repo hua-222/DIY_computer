@@ -2,6 +2,8 @@
 import axios from "axios";
 
 import { IObject } from "@/types/interface";
+//引入用户相关仓库
+import useUserStore from '@/store/modules/user'
 //引入 element-plus
 import { ElMessage } from "element-plus";
 // 创建axios实例
@@ -13,6 +15,10 @@ let http = axios.create({
 //http实例添加请求
 http.interceptors.request.use(
   (config: any) => {
+    let userStore = useUserStore()
+    if(userStore.token) {
+      config.headers.token = userStore.token
+    }
     //添加请求头信息 headers
     return config;
   },

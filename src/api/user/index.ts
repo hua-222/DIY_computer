@@ -5,7 +5,7 @@ import type { loginForm, loginResponseData, userResponseData } from './type'
 // enum枚举  
 enum API {
    LOGIN_URL = "/api/user/login",
-   USERINFO_URL = "/api/user/info"
+   USERINFO_URL = "/api/user/userInfo"
 }
 
 //暴露请求函数

@@ -1,11 +1,11 @@
 <template>
-    <el-button size="small" icon="Refresh" circle />
-    <el-button size="small" icon="FullScreen" circle />
+    <el-button size="small" icon="Refresh" circle @click="updateRefresh" />
+    <el-button size="small" icon="FullScreen" circle @click="fullScreen" />
     <el-button size="small" icon="Setting" circle />
-    <img src="../../../../public/user.png" width="24px" height="24px" style="margin: 0 10px;border-radius: 50%;" />
+    <img :src="userInfo.headerImgUrl" width="24px" height="24px" style="margin: 0 10px;border-radius: 50%;" />
     <el-dropdown>
         <span class="el-dropdown-link">
-            admin
+            {{ userInfo.name }}
             <el-icon class="el-icon--right">
                 <arrow-down />
             </el-icon>
@@ -22,6 +22,30 @@
 defineOptions({
     name: 'Setting'
 })
+import useLayoutSettingStore from '@/store/modules/setting'
+// 获取layout配置相关的仓库
+let layoutSettingStore = useLayoutSettingStore()
+//引入用户相关仓库
+import useUserStore from '@/store/modules/user'
+let userStore = useUserStore()
+let userInfo: any = userStore.userInfo 
+//刷新按钮点击回调
+const updateRefresh = () => {
+    layoutSettingStore.refresh = !layoutSettingStore.refresh
+}
+//全屏按钮点击回调
+const fullScreen = () => {
+    // DOM对象属性: 可以用来判断当前是不是全屏模式[全屏: true, 不是全屏: false]
+    let full = document.fullscreenElement
+    // 切换全屏模式
+    if(!full) {
+        // 文档根节点的方法requestFullscreen 实现全屏模式
+        document.documentElement.requestFullscreen()
+    } else {
+        // 退出全屏模式
+        document.exitFullscreen()
+    }
+}
 </script>
 
 <style scoped></style>

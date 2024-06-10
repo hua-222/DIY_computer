@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
-        <el-form class="login_form" ref="loginFormRef" :model="loginForm" :rules="rules">
+        <el-form class="login_form" ref="loginFormRef" :model="loginForm" :rules="rules" @keyup.enter="login">
           <h1>Hello</h1>
           <h2>欢迎来到DIY台式系统</h2>
           <el-form-item prop="username">
@@ -25,12 +25,13 @@
 import { User, Lock } from "@element-plus/icons-vue";
 import { reactive, ref } from "vue";
 import useUserStore from "@/store/modules/user";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import { ElNotification } from "element-plus";
 
 import { getTime } from "@/utils/time";
 
 let router = useRouter();
+let route = useRoute();
 let useStore = useUserStore();
 
 let loginFormRef = ref();
@@ -66,12 +67,17 @@ const login = async () => {
     .then((res) => {
       if (res.code === 200) {
         //跳到首页
-        router.push("/");
+        // 判断登录时 路由路径是否有query参数,有则跳query参数 无则跳首页
+        let redirect = route.query.redirect
+        router.push({
+          path: redirect ? String(redirect) : '/'
+        });
         ElNotification({
           type: "success",
           title: `Hi,${getTime()}`,
           message: "登录成功！"
         });
+        useStore.getUserInfo()
         loginLoading.value = false;
       }
     })

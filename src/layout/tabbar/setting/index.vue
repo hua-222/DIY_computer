@@ -3,7 +3,7 @@
     <el-button size="small" icon="FullScreen" circle @click="fullScreen" />
     <el-button size="small" icon="Setting" circle />
     <img :src="userInfo.headerImgUrl" width="24px" height="24px" style="margin: 0 10px;border-radius: 50%;" />
-    <el-dropdown>
+    <el-dropdown style="cursor: pointer">
         <span class="el-dropdown-link">
             {{ userInfo.name }}
             <el-icon class="el-icon--right">
@@ -12,7 +12,7 @@
         </span>
         <template #dropdown>
             <el-dropdown-menu>
-                <el-dropdown-item>退出登录</el-dropdown-item>
+                <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>
         </template>
     </el-dropdown>
@@ -22,13 +22,18 @@
 defineOptions({
     name: 'Setting'
 })
+import { useRouter, useRoute } from 'vue-router'
+// 获取路由器对象
+let $router = useRouter()
+// 获取路由对象
+let $route = useRoute()
 import useLayoutSettingStore from '@/store/modules/setting'
 // 获取layout配置相关的仓库
 let layoutSettingStore = useLayoutSettingStore()
 //引入用户相关仓库
 import useUserStore from '@/store/modules/user'
 let userStore = useUserStore()
-let userInfo: any = userStore.userInfo 
+let userInfo: any = userStore.userInfo
 //刷新按钮点击回调
 const updateRefresh = () => {
     layoutSettingStore.refresh = !layoutSettingStore.refresh
@@ -38,7 +43,7 @@ const fullScreen = () => {
     // DOM对象属性: 可以用来判断当前是不是全屏模式[全屏: true, 不是全屏: false]
     let full = document.fullscreenElement
     // 切换全屏模式
-    if(!full) {
+    if (!full) {
         // 文档根节点的方法requestFullscreen 实现全屏模式
         document.documentElement.requestFullscreen()
     } else {
@@ -46,6 +51,19 @@ const fullScreen = () => {
         document.exitFullscreen()
     }
 }
+// 退出登录
+const logout = () => {
+    // 1.清除token和用户信息
+    // 2.跳转到 /login登录页面
+    userStore.userLogout()
+    $router.push({
+        path: '/login',
+        query: {
+            redirect: $route.path
+        }
+    })
+}
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+</style>

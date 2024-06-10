@@ -7,7 +7,7 @@ import { httpLogin, httpUserInfo } from '@/api/user'
 import type { loginForm, loginResponseData } from '@/api/user/type'
 import type { userState } from './types/type'
 //引入本地存储方法
-import { SET_TOKEN, GET_TOKEN } from '@/utils/token'
+import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token'
 //引入常量路由
 import { constantRouter } from '@/router/routes'
 
@@ -18,6 +18,7 @@ let useUserStore = defineStore('User', {
         menuRoutes: constantRouter, //仓库存储生成菜单路由（数组）
         userInfo: {},  // 登录成功保存 当前用户信息
     }),
+    persist: true,
     //异步 逻辑的地方
     actions: {
         //用户登录
@@ -38,6 +39,12 @@ let useUserStore = defineStore('User', {
             if (result.code === 200) {
                 this.userInfo = Object.assign(this.userInfo,{...result.data.checkUser})
             }
+        },
+        //退出登录 清除token和用户信息
+        userLogout() {
+            this.token = ''
+            this.userInfo = {}
+            REMOVE_TOKEN()
         }
     },
     getters: {

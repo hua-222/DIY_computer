@@ -36,8 +36,12 @@ let useUserStore = defineStore('User', {
         // 获取用户信息方法
         async getUserInfo() {
             let result = await httpUserInfo()
+            // 获取用户信息成功 存储用户信息
             if (result.code === 200) {
                 this.userInfo = Object.assign(this.userInfo,{...result.data.checkUser})
+                return 'ok'
+            } else {
+                return Promise.reject('获取用户信息失败')
             }
         },
         //退出登录 清除token和用户信息

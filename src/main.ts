@@ -8,6 +8,8 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import "virtual:svg-icons-register";
 //引入路由
 import router from './router'
+// 引入路由鉴权
+import './permission'
 
 // 引入pinia
 import pinia from './store'

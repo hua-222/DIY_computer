@@ -24,7 +24,7 @@ import Setting from './setting/index.vue'
     height: 100%;
     display: flex;
     justify-content: space-between;
-    background-image: linear-gradient(to right, white, rgb(222, 236, 244), white);
+    //background-image: linear-gradient(to right, white, rgb(222, 236, 244), white);
 
     .tabbar-left {
         margin-left: 15px;

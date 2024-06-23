@@ -10,6 +10,8 @@ import "virtual:svg-icons-register";
 import router from './router'
 // 引入路由鉴权
 import './permission'
+// 暗黑模式
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 // 引入pinia
 import pinia from './store'

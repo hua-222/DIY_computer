@@ -82,6 +82,7 @@ let layoutSettingStore = useLayoutSettingStore()
 
   .common-layout-header {
     height: $layout-header-height;
+    border-bottom: 1px solid #dcdfe6;
   }
   ::v-deep(.el-header) {
     padding: 0;
@@ -89,7 +90,7 @@ let layoutSettingStore = useLayoutSettingStore()
 
   .common-layout-main {
     height: calc(100% - $layout-header-height);
-    background: $layout-main-background;
+    //background: $layout-main-background;
   }
 }
 </style>
